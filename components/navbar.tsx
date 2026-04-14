@@ -5,6 +5,7 @@ import { getSession, signOut } from "@/lib/auth/auth";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import SignOutButton from "./signOutButton";
+import UserAvatar from "./user-avatar";
 
 
 // server component can be asynced.
@@ -27,31 +28,36 @@ export default async function Navbar() {
                                     Dashboard
                                 </Button>
                             </Link>
+                            <UserAvatar user={session.user} />
 
                             {/* user profile dropdown */}
-                            <DropdownMenu>
-                                {/* Add asChild here */}
-                                <DropdownMenuTrigger asChild>
-                                    <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                                        <Avatar className="w-8 h-8 ">
-                                            <AvatarFallback className="bg-primary text-white font-bold">
-                                                {session.user.name[0].toUpperCase()}
-                                            </AvatarFallback>
-                                        </Avatar>
-                                    </Button>
-                                </DropdownMenuTrigger>
+                            {/* 
+                                <DropdownMenu>
 
-                                {/* Dropdown content */}
-                                <DropdownMenuContent className="w-56" align="end">
-                                    <DropdownMenuLabel className="font-normal">
-                                        <div className="flex flex-col space-y-1">
-                                            <p className="text-sm font-medium leading-none">{session.user.name}</p>
-                                            <p className="text-xs leading-none text-muted-foreground">{session.user.email}</p>
-                                        </div>
-                                    </DropdownMenuLabel>
-                                    <SignOutButton />
-                                </DropdownMenuContent>
-                            </DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                                            <Avatar className="w-8 h-8 ">
+                                                <AvatarFallback className="bg-primary text-white font-bold">
+                                                    {session.user.name[0].toUpperCase()}
+                                                </AvatarFallback>
+                                            </Avatar>
+                                        </Button>
+                                    </DropdownMenuTrigger>
+
+
+                                    <DropdownMenuContent className="w-56" align="end">
+                                        <DropdownMenuLabel className="font-normal">
+                                            <div className="flex flex-col space-y-1">
+                                                <p className="text-sm font-medium leading-none">{session.user.name}</p>
+                                                <p className="text-xs leading-none text-muted-foreground">{session.user.email}</p>
+                                            </div>
+                                        </DropdownMenuLabel>
+                                        <SignOutButton />
+                                    </DropdownMenuContent>
+                                </DropdownMenu></div>
+                            
+                            */}
+                            
                         </>)
                         : 
                         (<>
